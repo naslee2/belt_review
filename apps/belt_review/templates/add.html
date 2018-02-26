@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Add Book and Review</title>
+</head>
+<body>
+    <div class="col-sm-12">
+        <h2>Add a New Book Title and Review</h2>
+        <a href="/books/logout">Logout</a>
+        <a href="/books">Home</a>
+    </div>
+
+    <div class="col-sm-12">
+        <form action="/books/add_br", method="POST">
+            {% csrf_token %}
+            Book Title: <input type="text" name="title" id="title"><br>
+            <p>Author: </p>
+                <ul style="list-style-type:none">
+                    <li>
+                        Choose from list: <select name="list_author" id="list_author">
+                        {%for author in books_data%}
+                        <option value="{{author.author}}">{{author.author}}</option>
+                        {%endfor%}
+                        </select>
+                    </li>
+                    <li>Or add a new Author: <input type="text" name="new_author" id="new_author"></li>
+                </ul> 
+            <p>Review: </p> 
+            <textarea rows="4" cols="50" name="review" id="review"></textarea><br>
+            Rating: <select name="rating" id="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    {% if messages%}
+        {%for message in messages%}
+            <p>{{message}}</p>
+        {%endfor%}
+    {%endif%}
+</body>
+</html>
