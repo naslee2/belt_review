@@ -50,16 +50,19 @@ class UserManager(models.Manager):
                 errors2['success'] = check[0] 
                 return errors2
             else: 
-                errors2['login_password'] = "Invalid 0101"
+                errors2['login_password'] = "Invalid Email/Password"
                 return errors2
         else:
-            errors2['login_password'] = "Invalid 0011"
+            errors2['login_password'] = "Invalid Email/Password"
             return errors2
 
     def validator3(self,postData):
         errors3={}
+        title_check = Book.objects.filter(book_title=postData['title'])
         if len(postData['title']) <1:
             errors3['title'] = "Title should be more than 1 character!"
+        elif len(title_check) >0:
+            errors3['title'] = "Book is already in database!"
         else:
             if 'new_author' in postData:
                 errors3['success']= postData['new_author']

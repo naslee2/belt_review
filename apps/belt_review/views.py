@@ -78,7 +78,6 @@ def add_r(request):
         book_id = request.POST['add_book_id']
         if 'success' in errors4:
             this_id = request.session['id']
-
             Review.objects.create(review=request.POST['add_review'], rating=request.POST['add_rating'], users_id=this_id, books_id=book_id)
             return redirect('/books/'+book_id)
         else:
