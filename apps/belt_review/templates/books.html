@@ -20,7 +20,7 @@
             <p>Title: <a href="/books/{{r.books.id}}">{{r.books.book_title}}</a></p>
             <p>Rating: {{r.rating}}</p>
             <p><a href="/books/users/{{r.users.id}}">{{r.users.alias}}</a> says: {{r.review}}</p>
-            <p>Posted on: {{r.created_at}}</p>
+            <p>Posted on: {{r.created_at.date}}</p>
             </div>
         {%endfor%}
     </div>

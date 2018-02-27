@@ -26,7 +26,7 @@
         <div class="panel panel-info">
             <p>Rating: {{r.rating}}</p>
             <p><a href="/books/users/{{r.users.id}}">{{r.users.alias}} </a>says: {{r.review}}</p>
-            <p>Posted on: {{r.created_at}}</p>
+            <p>Posted on: {{r.created_at.date}}</p>
             {%if r.users_id == session_id%}
                 <a href="/books/delete_r/{{r.books.id}}/{{r.id}}">Delete this review</a>
             {%endif%}
